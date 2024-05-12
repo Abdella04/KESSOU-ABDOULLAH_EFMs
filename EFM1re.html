@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            border: solid;
+            padding: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: solid;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="">
+        <input type="text" name="" id="" placeholder="Search">
+        <h1>Commander les TVs</h1>
+        TVs <select name="" class="tv">
+            <option value=""></option>
+            <option value="SAMSUNG">SAMSUNG</option>
+            <option value="LG">LG</option>
+            <option value="APPLE">APPLE</option>
+        </select>
+        Quantité: <input type="text" name="" id="qt">
+        <div>
+            <button onclick="add()" type="button">ajouter au panier</button>
+        </div>
+        <h1>Panier des commandes</h1>
+    </form>
+    <table id="tab">
+        <tr>
+            <th>Reference</th>
+            <th>Quantité</th>
+            <th>image</th>
+            <th>action</th>
+        </tr>
+
+
+
+    </table>
+    <button> Commander</button>
+    <script>
+        function add() {
+
+            var TVs = document.querySelector(".tv").value
+            var table = document.getElementById("tab")
+            var QT = document.getElementById("qt").value
+            var image = {
+                "SAMSUNG": "samsung.jpeg",
+            "LG": "lg.jpeg",
+            "APPLE": "apple.jpeg"
+            };
+            var imagePath = image[TVs];
+            var template =
+                `
+            <tr>
+            <td contenteditable="true">${TVs}</td>
+            <td contenteditable="true">${QT}</td>
+            <td contenteditable="true"><img src="${imagePath}" alt="${TVs}" style="width: 100px;"></td>
+            <td contenteditable="true"><button type="button" onclick="del(this)">supprimer</button></td>
+        </tr>`
+            table.innerHTML += template
+        }
+        function del(button){
+            var row=button.parentNode.parentNode
+            row.parentNode.removeChild(row)
+        }
+    </script>
+</body>
+
+</html>

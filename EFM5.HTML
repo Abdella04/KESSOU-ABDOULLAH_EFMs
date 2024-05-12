@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            border: solid;
+            padding: 20px;
+        }
+        input{
+            margin-left: 30px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="">
+        <h1>Annonce Vente Voiture</h1>
+        Marticule: <input type="text" name="" id="MTR"><br>
+        Marque: ‎ ‎ ‎ <input type="text" name="" id="MRQ"><br>
+        Modèle: ‎ ‎ ‎ <input type="text" name="" id="MDL"><br>
+        AnéeProd:<input type="text" name="" id="ANPD"><br>
+        Carburant:<input type="text" name="" id="CARB"><br>
+        Prix: ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ <input type="text" name="" id="PRIX"><br>
+        <button>Consulter</button> <button>Enregistrer</button>
+
+    </form>
+    <script>
+        function reset() {
+            document.getElementById("MTR").value=""
+            document.getElementById("MRQ").value=""
+            document.getElementById("MDL").value=""
+            document.getElementById("ANPD").value=""
+            document.getElementById("CARB").value=""
+            document.getElementById("PRIX").value=""
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    form {
+        border: solid;
+        padding: 10px;
+    }
+
+    input {
+        margin: 5px;
+    }
+
+    div {
+        color: red;
+    }
+    #info{
+        color: black;
+    }
+</style>
+
+<body>
+    <h1>Notes des Stagiaires</h1>
+    <form action="">
+        Nouvelle ligne <br>
+        ID: <input type="text" name="" id="ID"> <button type="button" onclick="Verf()" id="bbtn">Lire</button><br>
+        <div id="IDer"></div>
+        Nom: <input type="text" name="" id="N" placeholder="Nom de Stagiaires"> <br>
+        <div id="Ner"></div>
+
+        filière: <input type="radio" name="a" id="" value="TDI">TDI <input type="radio" name="a" id="" value="TDM">TDM
+        <input type="radio" name="a" id="" value="TRI">TRI <br>
+        Note: <input type="text" name="" id="GR"><br>
+        <div id="GRer"></div>
+
+        <button type="button" onclick="add()">Ajouter La Note</button>
+
+        <div id="info"></div>
+    </form>
+
+    <table border="1" id="TAB">
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Note</th>
+            <th>Filière</th>
+            <th>Gestion</th>
+        </tr>
+
+
+        <tr>
+            <th colspan="2">La meilleur Note</th>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+        function Verf() {
+            let ID = document.getElementById("ID").value
+            let N = document.getElementById("N").value
+            let GR = document.getElementById("GR").value
+            if (ID === "" || isNaN(ID)) {
+                document.getElementById("IDer").innerHTML = "ENTER INFO CORRECTLY"
+            }
+            else {
+                document.getElementById("IDer").innerHTML = ""
+            }
+
+            if (N === "" || !isNaN(N) || N.length < 3) {
+                document.getElementById("Ner").innerHTML = "ENTER INFO CORRECTLY"
+            }
+            else {
+                document.getElementById("Ner").innerHTML = ""
+            }
+
+            if (GR === "" || isNaN(GR) || GR >= 20) {
+                document.getElementById("GRer").innerHTML = "ENTER INFO CORRECTLY"
+            }
+            else {
+                document.getElementById("GRer").innerHTML = ""
+            }
+    
+        }
+       
+
+
+        function add() {
+            let ID = document.getElementById("ID").value
+            let N = document.getElementById("N").value
+            let GR = document.getElementById("GR").value
+            let FL = document.querySelector('input[name="a"]:checked').value
+            let TAB = document.getElementById("TAB")
+            let ob={
+                "${ID}":ID,
+                "${N}":N,
+                "${GR}":GR,
+                "${FL}":FL,
+            }
+            let list=[]
+            list.push(ob)
+            console.log(list);
+
+            let template = `
+            <tr>
+                <td>${ID}</td>
+                <td>${N}</td>
+                <td style="color: ${GR >= 10 ? 'green' : 'red'}">${GR}</td>
+                <td>${FL}</td>
+                <td><button type="button" onclick="btn(this)">Suprimer</button></td>               
+                </tr>
+            `
+            TAB.innerHTML += template
+            
+            let bestScore = 0;
+            if (GR > bestScore) {
+        bestScore = GR;
+        document.getElementById("best-score").innerText = GR; 
+    }
+        }
+        function btn(button) {
+            let row = button.parentNode.parentNode
+            row.parentNode.removeChild(row)
+        }
+        document.getElementById("bbtn").addEventListener('click', function () {
+            let ID = document.getElementById("ID").value;
+            let N = document.getElementById("N").value;
+            let GR = document.getElementById("GR").value;
+            document.getElementById("info").innerHTML = "ID: " + ID + ", Nom: " + N + ", Note: " + GR;
+        });
+
+    </script>
+</body>
+
+</html>
